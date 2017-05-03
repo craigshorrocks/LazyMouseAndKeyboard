@@ -1,0 +1,12 @@
+{
+  "name": "LazyMouseAndKeyboard-Server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.2",
+    "robotjs": "^0.4.7"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}
