@@ -23,7 +23,6 @@ app.get('/mouse/click', function(req,res){
 	mouseControl.clickMouse(button);
 });
 
-// TODO: Scroll not currently working, investigate
 app.get('/mouse/scroll', function(req,res){
     var xAmount = parseInt(req.query.x) || 0;
 	var yAmount = parseInt(req.query.y) || 0;
@@ -36,11 +35,20 @@ app.get('/mouse/scroll', function(req,res){
 
 // Keyboard functionality
 app.get('/keyboard/string', function(req,res){
-    var string = req.query.string
+    var string = req.query.string;
 	
 	res.send('Typing string: ' + string);
 	
 	keyboardControl.keyString(string);
+});
+
+app.get('/keyboard/press', function(req,res){
+    var button = req.query.button;
+	var modifier = req.query.modifier;
+	
+	res.send('Typing button: ' + button + ' with modifier: ' + modifier);
+	
+	keyboardControl.keyPress(button, modifier);
 });
 
 

@@ -17,7 +17,8 @@ module.exports.clickMouse = function(button){
 	}
 };
 
-
+// The robot scroll is backward to what I expect, so putting
+// the parameters the other way around
 module.exports.scrollMouse = function(xAmount,yAmount){
-	robot.scrollMouse(xAmount,yAmount);
+	robot.scrollMouse(yAmount,xAmount);
 };
