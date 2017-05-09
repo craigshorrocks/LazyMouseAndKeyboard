@@ -2,49 +2,39 @@
 <html>
 <head>
 	<title>Lazy Mouse and Keyboard</title>
-	<style>
-		html, body {
-			height: 100%;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
-		setInterval(sendMouse,300);
-		
-		var x = 150;
-		var y = 100;
-		var xBuff = 0;
-		var yBuff = 0;
-		var changed = false;
-		function blah(e){
-			changed = true;
-			var xDiff = e.clientX - x;
-			var yDiff = e.clientY - y;
-			xBuff = xBuff + xDiff;
-			yBuff = yBuff + yDiff;
-			x = e.clientX;
-			y = e.clientY;
-		}
-		function initial(e){
-			x = e.clientX;
-			y = e.clientY;
-		}
-		
-		function sendMouse(){
-			if(changed){
-				console.log('(' + xBuff + ',' + yBuff + ')');
-				xBuff = 0;
-				yBuff = 0;
-			}
-			changed = false;
-		}
-	</script>
+	<script src="client.js"></script>
 </head>
 
 <body>
-	<canvas id="cnvs" width="99%" height="200" style="border:1px
-		solid #000000;width:99%;height:50%;" onmousemove="blah(event)" onmouseenter="initial(event)">
-	</canvas>
+	<button onclick="mouseView()">Mouse Control</button>
+	<button onclick="keyboardView()">Keyboard Control</button>
+	
+	<!-- Mouse Controls -->
+	<div class="mouseView">
+		<canvas id="cnvs" onmousemove="moveMouse(event)"
+			onmouseenter="initialMove(event)">
+		</canvas>
+		<button onclick="leftClick()">Left Click</button>
+		<button onclick="rightClick()">Right Click</button>
+		<button onclick="scrollVertical(1)">Scroll Up</button>
+		<button onclick="scrollVertical(-1)">Scroll Down</button>
+	</div>
+	
+	<!-- Keyboard Controls -->
+	<div class="keyboardView">
+		<br/>
+		<input id="string" type="text"><br/>
+		<button onclick="sendString()">Send</button>
+		<br/>
+		
+		<!-- Special buttons -->
+		<button onclick="buttonPress('backspace')">Backspace</button>
+		<button onclick="buttonPress('control')">Control</button>
+		<button onclick="buttonPress('tab')">Tab</button>
+	</div>
+	
 </body>
 
 </html>
